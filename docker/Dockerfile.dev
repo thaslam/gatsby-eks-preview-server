@@ -1,0 +1,17 @@
+# https://hub.docker.com/_/node
+# https://valenciandigital.com/blog/containerizing-a-gatsbyjs-site-with-docker-compose
+From node:14.17.3 as builder
+
+# used to put gatsby develop in refresh mode
+# https://www.gatsbyjs.com/docs/refreshing-content/
+ENV ENABLE_GATSBY_REFRESH_ENDPOINT=true
+WORKDIR /app
+
+COPY ./tmp/resume-gatsby-site/ ./
+
+#RUN npm update --force
+RUN npm install
+
+#COPY . .
+
+CMD ["npm", "run", "start"]

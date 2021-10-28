@@ -1,0 +1,18 @@
+version: "3"
+services:
+  resume-gatsby-preview-server:
+    image: thaslam/resume-gatsby-preview-server
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1000M
+    build:
+      context: ~/Code
+      dockerfile: ./gatsby-eks-preview-server/docker/Dockerfile.dev
+     # volumes:
+     # - ~/Code/tmp/resume-gatsby-site/src:/app/src # Links the source files to the running container
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "3000:8000"
